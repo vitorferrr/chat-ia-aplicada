@@ -1,0 +1,65 @@
+<div class="flex flex-col h-screen">
+
+  <header class="navbar bg-base-200 shadow-sm px-6">
+    <span >Chatbot Chain</span>
+  </header>
+
+  <main class="flex flex-col flex-1 min-h-0 w-full max-w-3xl mx-auto p-4">
+
+    <div class="flex-1 overflow-y-auto">
+      @for (msg of messages(); track $index) {
+        <div class="chat" [class.chat-end]="msg.role === 'user'" [class.chat-start]="msg.role === 'bot'">
+
+          @if (msg.role === 'bot') {
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full border border-base-300">
+                <img src="bot.png" alt="Chatbot" />
+              </div>
+            </div>
+          } @else {
+            <div class="chat-image avatar avatar-placeholder">
+              <div class="w-10 rounded-full border border-base-300 bg-white text-[#2196F3]">
+                <span class="font-bold">V</span>
+              </div>
+            </div>
+          }
+
+          <div class="chat-header">
+            {{ msg.role === 'user' ? 'Você' : 'Chatbot' }}
+            <time class="text-xs opacity-50">{{ msg.date | date: 'HH:mm' }}</time>
+          </div>
+
+          <div class="chat-bubble" [class.chat-bubble-primary]="msg.role === 'user'">
+            {{ msg.text }}
+          </div>
+
+          <div class="chat-footer opacity-50">
+            {{ msg.role === 'user' ? 'Enviado' : 'Respondido' }}
+          </div>
+
+        </div>
+      }
+
+      @if (loading()) {
+        <div class="chat chat-start">
+          <div class="chat-image avatar">
+            <div class="w-10 rounded-full border border-base-300">
+              <img src="bot.png" alt="Chatbot" />
+            </div>
+          </div>
+          <div class="chat-header">Chatbot</div>
+          <div class="chat-bubble">
+            <span class="loading loading-dots loading-sm"></span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <form class="flex gap-2 mt-4" (ngSubmit)="send()">
+      <input class="input flex-1" name="text" [(ngModel)]="text"
+             placeholder="Digite sua pergunta..." autocomplete="off" />
+      <button class="btn btn-primary" type="submit" [disabled]="loading()">Enviar</button>
+    </form>
+
+  </main>
+</div>
