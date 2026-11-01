@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ChatService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8000/chat';
+  private apiUrl = 'https://chat-ia-aplicada.onrender.com/chat';
 
   private sessionId = crypto.randomUUID();
 
