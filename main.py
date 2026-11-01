@@ -1,9 +1,27 @@
+import os
+
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from core import limpar_sessao, responder
 
+load_dotenv()
+
+ORIGENS_LOCAIS = ["http://localhost:3000", "http://localhost:5173"]
+ORIGENS_PERMITIDAS = ORIGENS_LOCAIS + [
+    o.strip().rstrip("/") for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o.strip()
+]
+
 app = FastAPI(title="Agente de IA", description="API de teste do chat - Quiz 3.")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ORIGENS_PERMITIDAS,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class Pergunta(BaseModel):
@@ -14,6 +32,11 @@ class Pergunta(BaseModel):
 class Resposta(BaseModel):
     resposta: str
     session_id: str
+
+
+@app.get("/")
+def saude() -> dict:
+    return {"status": "ok"}
 
 
 @app.post("/chat", response_model=Resposta)
