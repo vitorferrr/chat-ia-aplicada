@@ -1,5 +1,0 @@
-{
-  "typescript.tsdk": "frontend-quiz-3/node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "js/ts.tsdk.path": "frontend-quiz-3/node_modules/typescript/lib"
-}
