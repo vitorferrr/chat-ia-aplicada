@@ -1,0 +1,16 @@
+# Ambientes virtuais e variáveis de ambiente (Segurança)
+venv/
+.venv/
+env/
+.env
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# IDEs e Editores
+.vscode/
+.idea/
+.DS_Store
