@@ -1,6 +1,7 @@
 # Agente de IA - Quiz 3 IA Aplicada
 
-Chatbot inteligente com gerenciamento de memória conversacional, construído com LangChain e a API do Google Gemini. O projeto oferece tanto uma interface interativa via linha de comando (CLI) quanto uma API RESTful usando FastAPI.
+Chatbot inteligente com gerenciamento de memória conversacional, construído com LangChain e a API do Google Gemini. O projeto oferece tanto uma interface interativa via linha de comando (CLI) quanto uma API RESTful usando FastAPI. Link do chatbot:
+- https://chat-ia-aplicada-w5ex.vercel.app/
 
 ---
 
@@ -96,3 +97,9 @@ Acesse a documentação interativa (Swagger) em: **http://localhost:8000/docs**
 - `DELETE /sessao/{session_id}`: Limpa o histórico em memória daquela sessão.
 
 ---
+
+## Integrantes do grupo:
+- Andressa Karine
+- Beatriz Farias
+- Marconi Andrade
+- Vitor Ferreira
